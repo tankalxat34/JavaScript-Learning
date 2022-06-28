@@ -1,5 +1,5 @@
 # JavaScript-Learning
-Здесь я изучаю <img src="https://icon-widget.codersrank.io/api/javascript">JavaScript по бесплатному курсу на YouTube
+Здесь я изучаю <img src="https://icon-widget.codersrank.io/api/javascript" width=19px>JavaScript по бесплатному курсу на YouTube
 
 [>>> ССЫЛКА НА КУРС <<<](https://youtu.be/CxgOKJh4zWE)
 
