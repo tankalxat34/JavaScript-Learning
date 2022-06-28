@@ -338,5 +338,39 @@ const myCity = {
     }
 }
 
-myCity.cityGreeting()
+myCity.cityGreeting() // 'Hello!'
+```
+
+Еще пример, без явного слова function:
+
+```js
+const myCity = {
+    city: 'New York',
+    cityGreeting() {
+        colsole.log('Hello!')
+    }
+}
+
+myCity.cityGreeting() // 'Hello!'
+```
+
+# JSON
+
+**JSON** - JavaScript Object Notation (формат обмена данными между компьютерами в интернете).
+
+## Конвертация в объект JavaScript
+
+Метод `parse` объекта `JSON`
+
+Пример, который возвращает объект JavaScript:
+
+```js
+JSON.parse('{"key1": "value1", "key2": 1}')
+```
+## Конвертация JavaScript-объект в строку
+
+Метод `stringify` объекта `JSON`
+
+```js
+JSON.stringify({key1: 'value1', key2: 1})
 ```
