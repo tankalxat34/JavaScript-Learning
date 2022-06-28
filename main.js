@@ -1,4 +1,8 @@
-let objectA = {
-    a: true,
-    b: 10
+const myCity = {
+    city: 'New York',
+    cityGreeting: function() {
+        console.log('Hello!')
+    }
 }
+
+myCity.cityGreeting()
