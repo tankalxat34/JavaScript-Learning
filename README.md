@@ -1,5 +1,5 @@
 # JavaScript-Learning
-Здесь я изучаю JavaScript по бесплатному курсу на YouTube
+Здесь я изучаю <img src="https://icon-widget.codersrank.io/api/javascript">JavaScript по бесплатному курсу на YouTube
 
 [>>> ССЫЛКА НА КУРС <<<](https://youtu.be/CxgOKJh4zWE)
 
@@ -22,7 +22,7 @@
 
 Пример объекта:
 
-```json
+```js
 {
     visible: true,
     colorDepth: 24,
@@ -37,3 +37,5 @@
 ```
 
 Массивы, функции, числа, строки - все эети сущности ведут себя как объекты.
+
+# Вывод на экран
