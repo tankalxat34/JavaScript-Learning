@@ -1,2 +1,4 @@
-const myName = "Alexander";
-console.log(myName)
+let objectA = {
+    a: true,
+    b: 10
+}
