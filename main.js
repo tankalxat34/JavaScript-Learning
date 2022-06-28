@@ -1,11 +1,11 @@
-const myCity = {
+const person = {
     city: 'New York',
     name: 'Alexander',
     digit: 5
 }
 
-const result = JSON.stringify(myCity)
-console.log(result)
+const person2 = Object.assign({}, person)
 
-const resultObject = JSON.parse(result)
-console.log(resultObject)
+person.digit = 18
+console.log(person.digit)
+console.log(person2.digit)

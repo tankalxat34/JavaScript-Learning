@@ -374,3 +374,113 @@ JSON.parse('{"key1": "value1", "key2": 1}')
 ```js
 JSON.stringify({key1: 'value1', key2: 1})
 ```
+
+
+# Мутация в JavaScript
+
+## Значения примитивных типов
+
+```js
+const a = 10
+let b = a // скопировали значение переменной a в переменную b
+b = 30
+console.log(a) // 10
+console.log(30) // 30
+```
+
+## Значения ссылочного типа
+
+```js
+const person = {
+    name: 'Bob',
+    age: 21
+}
+person.age = 22
+person.isAdult = true // добавление нового свойства - мутация объекта
+
+console.log(person.age)     // 22
+console.log(person.isAdult) // true
+```
+
+Возможна мутация копий объекта
+
+```js
+const person = {
+    name: 'Bob',
+    age: 21
+}
+
+const person2 = person
+
+person2.age = 22
+person2.isAdult = true // добавление нового свойства - мутация объекта
+
+console.log(person.age)     // 22
+console.log(person.isAdult) // true
+```
+
+### Как избежать мутацию в копии объекта?
+
+#### Вариант 1 - `Object.assign`
+
+```js
+const person = {
+    name: 'Bob',
+    age: 25
+}
+
+const person2 = Object.assign({}, person) // аналогично globalThis.Object.assign(...)
+/* Буквально: создаем в пустом объекте все те свойства и значения из старого объекта person */
+
+person2.age = 26
+
+console.log(person2.age)    // 26
+console.log(person.age)     // 25
+```
+
+> Если у объекта есть вложенные объекты, то ссылки на них сохраняются!
+
+#### Вариант 2 - ...
+
+Второй способ через оператор `...` "spread" (оператора разделения объекта на свойства).
+
+Существующий объект `person` мы разделили на свойства и собрали на их основе новый объект.
+
+```js
+const person = {
+    name: 'Bob',
+    age: 25
+}
+
+const person2 = { ...person }
+
+person2.name = 'Alice'
+
+console.log(person2.name)   // 'Alice'
+console.log(person.name)    // 'Bob'
+```
+
+> Если у объекта есть вложенные объекты, то ссылки на них сохраняются!
+
+#### Вариант 3 - JSON
+
+Третий способ через уже знакомые методы объекта `JSON`:
+
+```js
+const person = {
+    name: 'Bob',
+    age: 25
+}
+
+// сначала конвертацию в строку, потом в объект
+const person2 = JSON.parse(JSON.stringify(person))
+
+person2.name = 'Alice'
+
+console.log(person2.name)   // 'Alice'
+console.log(person.name)    // 'Bob'
+```
+
+> Здесь ссылки на вложенные объекты *не сохраняются!*
+
+# Функции
