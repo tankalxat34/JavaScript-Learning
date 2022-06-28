@@ -1,3 +1,2 @@
-3 + 2
-
-'Alexander'
+const myName = "Alexander";
+console.log(myName)
