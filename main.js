@@ -1,6 +1,11 @@
-function printMyName() {
-    "Hello world"
-    console.log('Alexander');
+const button = {
+    width: 200,
+    text: 'Buy'
 }
 
-setTimeout(printMyName, 2000);
+const redButton = {
+    ...button,
+    color: 'red'
+}
+
+console.table(redButton)
