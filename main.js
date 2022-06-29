@@ -1,5 +1,5 @@
 let person = {
-    city: 'Krasnogorsk',
+    city: 'Moscow',
     name: 'Alexander'
 }
 
