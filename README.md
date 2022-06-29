@@ -506,3 +506,34 @@ function name(arg1, arg2) {
 > Функция - объект
 
 Если функция ничего не возвращает - она возвращает `undefined`.
+
+# Колбэк функции
+
+**Callback-функция** - такая функция, которая вызывается в теле другой функции.
+
+```js
+function anotherFunction() {
+    /* эта функция является callback-функцией */
+    // Действия...
+}
+
+function functionWithCallback(callbackFunction) {
+    callbackFunction();
+}
+
+functionWithCallback(anotherFunction)
+```
+
+## Пример
+
+```js
+function printMyName() {
+    console.log('Alexander');
+}
+
+setTimeout(printMyName, 1000); // функция printMyName будет вызвана через 1000 миллисекунд
+```
+
+Функция `setTimeout` вызывает другую функцию через определенное количество миллисекунд
+
+**1000 мс = 1 с**

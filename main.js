@@ -1,7 +1,5 @@
-function myFn(a, b) {
-    /* некоторая функция */
-    let c = a + b;
-    return c;
+function printMyName() {
+    console.log('Alexander');
 }
 
-console.log(myFn(5, 3))
+setTimeout(printMyName, 2000);
