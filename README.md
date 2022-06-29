@@ -770,7 +770,18 @@ const redButton = {
 console.table(redButton)
 ```
 
+# Шаблонные строки
 
+Это относится к вариантам форматирования строк.
+
+Пример:
+
+```js
+const hello = 'Hello'
+const world = 'World'
+
+const greeting = `${hello} ${world}`
+```
 
 
 

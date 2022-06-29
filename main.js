@@ -1,11 +1,8 @@
-const button = {
-    width: 200,
-    text: 'Buy'
+let person = {
+    city: 'Krasnogorsk',
+    name: 'Alexander'
 }
 
-const redButton = {
-    ...button,
-    color: 'red'
-}
+const greeting = `Привет! Меня зовут ${person.name} и я живу в ${person.city}`
 
-console.table(redButton)
+console.log(greeting)
