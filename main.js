@@ -1,28 +1,20 @@
-// обычная функция
-function f1(a, b = 1) {
-    return a * b;
+function rnd(start, end) {
+    /* простой генератор псевдослучайных чисел */
+    return Date.now() % end + start;
 }
 
-console.log('Результат f1')
-console.log(f1(5, 2))   // 10
-console.log(f1(5))      // 5
+console.log(rnd(0, 10))
 
-
-// анонимное функциональное выражение
-const f2 = function(a, b = 1) {
-    return a * b;
+function newPost(post, addedAt = Date()) {
+    return {
+        ...post,
+        addedAt,
+    }
 }
 
-console.log('Результат f2')
-console.log(f2(5, 2))   // 10
-console.log(f2(5))      // 5
-
-
-// стрелочные функции
-const f3 = (a, b = 1) => {
-    return a * b;
+const firstPost = {
+    id: 1,
+    author: 'Bogdan'
 }
 
-console.log('Результат f3')
-console.log(f3(5, 2))   // 10
-console.log(f3(5))      // 5
+console.log(newPost(firstPost))

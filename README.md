@@ -849,3 +849,5 @@ const greeting = `${hello} ${world}`
 ```
 
 
+# Обработа ошибок
+
