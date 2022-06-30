@@ -1012,3 +1012,79 @@ console.log(newArray)   // [3, 6, 9]
 console.log(myArray)    // [1, 2, 3]
 ```
 
+# Деструктуризация
+
+Это процесс создания переменных, названия которых соответствуют названию свойств в объекте. Причем значениями переменных становятся значения свойств из объекта.
+
+## Синтаксис (объекты)
+
+```js
+const userProfile = {
+    firstname: 'Alexander',
+    commentsQty: 23,
+    hasSignedAgreement: false
+}
+
+const { firstname, commentsQty } = userProfile
+const { hasSignedAgreement } = userProfile
+
+console.log(firstname)      // 'Alexander'
+console.log(commentsQty)    // 23
+```
+
+## Синтаксис (массивы)
+
+```js
+const fruits = ['Apple', 'Banana']
+
+const [fruitOne, fruitTwo] = fruits
+
+console.log(fruitOne)   // 'Apple'
+console.log(fruitTwo)   // 'Banana'
+```
+
+## Синтаксис (функции)
+
+```js
+const userProfile = {
+    firstname: 'Alexander',
+    commentsQty: 23,
+    hasSignedAgreement: false
+}
+
+/* 
+Берем свойства с именами такими то из значения, которое будет передано в аргумент функции
+
+На основе указанных свойств из будут взяты значения этих свойств из переданного объекта, которые могут использоваться внутри функции
+*/
+const userInfo = ({ firstname, commentsQty }) => {
+    if (!commentsQty) {
+        return `User ${firstname} has no comments`
+    }
+    return `User ${firstname} has ${commentsQty} comments`
+}
+
+console.log(userInfo(userProfile)) // 'User Alexander has 23 comments'
+```
+
+# Условные инструкции
+
+## Виды
+- `if`
+- `if ... else`
+- `switch`
+- тернарный оператор
+
+## Синтаксис
+
+```js
+if (условие) {
+    // блок кода, выполняемый однократно, если условие правдиво
+} else if (услове2) {
+    // блок кода, выполняемый однократно, если условие2 правдиво
+} else {
+    // блок кода, выполняемый однократно, если условие ложно и условие2 ложно
+}
+```
+
+
