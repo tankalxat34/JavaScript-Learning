@@ -1,13 +1,3 @@
-const fnWithError = () => {
-    throw new Error('Some error')
+for (let i = 0; i < 5; i++) {
+    console.log(i);
 }
-
-try {
-    fnWithError()
-} 
-catch (error) {
-    console.error(error)
-    console.log(error.message)
-}
-
-console.log('Continue...')
