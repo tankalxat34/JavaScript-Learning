@@ -1,8 +1,6 @@
-let a = 7
-let result = 'Число равно пяти'
+let i = 0
 
-a > 5
-    ? result = 'Число больше пяти'
-    : result = 'Число меньше пяти'
-
-console.log(result)
+do {
+    console.log(i)
+    i++
+} while (i < 5)

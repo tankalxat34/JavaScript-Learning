@@ -1139,3 +1139,160 @@ a > 5
 
 console.log(result)
 ```
+
+# Циклы
+
+Циклы дают возможность избежать повторения кода и сделать какие то повторяющиеся действия.
+
+Все циклы являются инструкциями
+
+## Виды циклов
+- `for`
+- `for ... in ...`
+- `while`
+- `do ... while`
+- `for ... of ...`
+
+### Цикл `for`
+
+#### Структура
+
+```js
+for (инициализация_итератора; условие; итерационное действие) {
+    // блок кода
+}
+```
+
+#### Пример
+```js
+for (let i = 0; i < 5; i++) {
+    console.log(i)
+}
+```
+
+### Цикл `while`
+
+#### Структура
+
+```js
+while (условие) {
+    // блок кода
+}
+```
+
+#### Пример
+
+```js
+let i = 0
+
+while (i < 5>) {
+    console.log(i)
+    i++
+}
+```
+
+### Цикл `do while`
+
+#### Структура
+
+```js
+do {
+    // блок кода
+} while (Условие)
+```
+
+#### Пример
+
+```js
+let i = 0
+
+do {
+    console.log(i)
+    i++
+} while (i < 5)
+```
+
+
+### Цикл `for in`
+
+Благодаря этому циклу мы можем перебрать все свойства объекта
+
+#### Структура
+
+```js
+for (key in Object) {
+    // блок кода
+    // Object[key]
+}
+```
+
+#### Пример
+
+```js
+const myObject = {
+    x: 10,
+    y: true,
+    z: 'abc'
+}
+
+for (const key in myObject) {
+    console.log(key, myObjectp[key])
+}
+```
+
+#### Пример для `forEach`
+
+##### Перебор по ключам
+
+```js
+const myObject = {
+    x: 10,
+    y: true,
+    z: 'abc'
+}
+
+Object.keys(myObject).forEach(key => {
+    console.log(key, myObject[key])
+})
+```
+
+##### Перебор по значениям
+
+```js
+const myObject = {
+    x: 10,
+    y: true,
+    z: 'abc'
+}
+
+Object.values(myObject).forEach(value => {
+    console.log(value)
+})
+```
+
+
+### Цикл `for of`
+
+Такой цикл нужен для пробежки по итерируемым структурам
+
+> Объект - не итерируемая сущность!
+
+#### Структура
+
+`Iterable` - переменная, по которойм можно перебрать элементы
+
+```js
+for (Element of Iterable) {
+    // блок кода
+}
+```
+
+#### Пример
+
+```js
+const myString = 'hey'
+
+for (const letter of myString) {
+    console.log(letter)
+}
+```
