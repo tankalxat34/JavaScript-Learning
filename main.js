@@ -1,31 +1,23 @@
-function rnd(min, max) { // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min)
+const fibonachi = n => {
+    /* нахождение числа Фибоначчи по его номеру 
+    
+    число Фибоначчи - такое число, которое является суммой двух предыдущих чисел
+
+    РЯД: 0, 1, 1, 2, 3, 5, 8, 13
+      №: 0, 1, 2, 3, 4, 5, 6, 7
+
+    ФОРМУЛА: f(n) = f(n - 1) + f(n - 2)
+    */
+    if (n < 0) {
+        return 0
     }
 
-const car = {
-    carBrand: 'example',
-    price: 1,
-    isAvailableForSale: false
+    if (n <= 2) {
+        return 1
+    }
+    return fibonachi(n - 1) + fibonachi(n - 2)
 }
 
-const BRAND = [
-    'bmw',
-    'mercedes',
-    'audi',
-    'ferrari',
-    'lada'
-]
 
-let cars = [];
-let newObject;
-
-for (let i = 0; i < 3; i++) {
-    newObject = Object.assign({}, car)
-    newObject.carBrand = BRAND[rnd(0, BRAND.length - 1)]
-    newObject.price = rnd(10000, 999999)
-    newObject.isAvailableForSale = Boolean(rnd(0, 2))
-    cars.push(newObject)
-}
-
-console.log(cars)
-console.log(car)
+let result = fibonachi(7)
+console.log(result)
