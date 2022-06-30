@@ -1296,3 +1296,93 @@ for (const letter of myString) {
     console.log(letter)
 }
 ```
+
+# Модули
+
+Модули позволяют структурировать проект и избегать дублирование блоков кода.
+
+## Синтаксис Export - Import
+
+```js
+/* module1.js */
+export ...
+```
+
+```js
+/* module2.js */
+import ...
+```
+
+### Пример
+
+```js
+/* moduleOne.js */
+const myName = () => {
+    console.log('Alexander')
+}
+
+export default myName
+```
+
+Теперь осуществляем подключение экспортированной функции
+
+При использовании ключевого слова `default` мы можем экспортировать функцию так, что при ее использовании в другом файле мы можем дать ей другое название. В данном примере мы даем функции `myName` название `printMyName`.
+
+```js
+/* moduleTwo.js */
+import printMyName from './moduleOne.js'
+
+printMyName()   // Alexander
+```
+
+
+### Важно!
+
+Для корректно работы с этой технологичей нужно, чтобы код модулей находился в файлах с расширением `mjs`!
+
+### Экспорт-Импорт переменных
+
+В данном примере нужно, чтобы имена переменных совпадали
+
+```js
+/* moduleOne.js */
+const one = 1
+const two = 'two'
+
+export {
+    one,
+    two
+}
+```
+
+```js
+/* moduleTwo.js */
+import {
+    one,
+    two
+} from '.moduleOne.js'
+
+console.log(one)    // 1
+console.log(two)    // 'two'
+```
+
+Чтобы изменить название импортируемой переменной нужно рядом с ней написать `as newNameOfValue`
+
+Пример:
+
+```js
+import {
+    one as oneRenamed,
+    two
+} from './modulene.js'
+
+console.log(oneRenamed) // 1
+```
+
+## Правила работы с модулями
+
+1. Модули должны быть одноцелевыми;
+2. Распологайте все `export` инструкции внизу файла;
+3. Распологайте все `import` инструкции вверху файла;
+4. По возможности используйте `export default`;
+
