@@ -1,10 +1,8 @@
-let monthNumber = 1
+let a = 7
+let result = 'Число равно пяти'
 
-switch (monthNumber) {
-    case 1:
-        console.log("Это январь")
-        break
-    default:
-        console.log("Я не знаю этот месяц")
-}
+a > 5
+    ? result = 'Число больше пяти'
+    : result = 'Число меньше пяти'
 
+console.log(result)
