@@ -1,20 +1,13 @@
-function rnd(start, end) {
-    /* простой генератор псевдослучайных чисел */
-    return Date.now() % end + start;
+const fnWithError = () => {
+    throw new Error('Some error')
 }
 
-console.log(rnd(0, 10))
-
-function newPost(post, addedAt = Date()) {
-    return {
-        ...post,
-        addedAt,
-    }
+try {
+    fnWithError()
+} 
+catch (error) {
+    console.error(error)
+    console.log(error.message)
 }
 
-const firstPost = {
-    id: 1,
-    author: 'Bogdan'
-}
-
-console.log(newPost(firstPost))
+console.log('Continue...')
