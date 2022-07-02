@@ -1657,3 +1657,167 @@ getData('https://jsonplaceholder.typicode.com/todos')
 > Функцию `getDate` можно вынести в отдельный модуль `utilities.mjs` и импортировать ее, чтобы использовать
 
 
+# `async` / `await`
+
+Это специальный синтаксис для упрощения работы с промисами (появился в ES6 в 2015 году)
+
+## `async`
+
+### Асинхронная функция
+
+Это такая функция, которая вместо обычного значения возвращает промис
+
+### Синтаксис
+
+```js
+async function asyncFn() {
+    // всегда возвращает промис
+}
+
+const asyncFn = async () => {
+    // пример со стрелочной функцией
+}
+```
+
+### Пример
+
+```js
+const asyncFn = async () => {
+    return 'Success!'
+}
+
+asyncFn() // вернется Промис, а не строка. Потом такой промис можно исполнить или отклонить.
+```
+
+Чтобы получить результат промиса нужно написать обработку промиса
+
+```js
+asyncFn()
+    .then(value => console.log(value))
+    .catch(error => console.log(error.message))
+```
+
+## `await`
+
+Внутри асинхронных функций можно ожидать результата промиса
+
+```js
+const asyncFn = async () => {
+    await <Promise>
+}
+
+asyncFn()
+```
+
+### Пример
+
+```js
+const timerPromise = () =>
+    new Promise((resolve, reject) =>
+        setTimeout(() => resolve(), 2000)
+    )
+
+const asyncFn = async () => {
+    console.log('Timer starts')
+    await timerPromise()    // функция дальше не выполнится, так как с помощью слова await мы ждем результата промиса (исполнен или отклонен)
+    console.log('Timer ended')
+}
+
+asyncFn()
+```
+
+Расширим предыдущий пример - засечем время выполнения программы
+
+```js
+const timerPromise = () =>
+    new Promise((resolve, reject) =>
+        setTimeout(() => resolve(), 2000)
+    )
+
+const asyncFn = async () => {
+    console.log('Timer starts')
+    const startTime = performance.now()
+    await timerPromise()    // функция дальше не выполнится, так как с помощью слова await мы ждем результата промиса (исполнен или отклонен)
+    const endTime = performance.now()
+    console.log('Timer ended', endTime - startTime)
+}
+
+asyncFn()
+```
+
+# Переход с промисов на `async` / `await`
+
+Сначала у нас был такой код:
+
+```js
+const getData = url => 
+    new Promise((resolve, reject) => 
+        fetch(url)
+            .then(response => response.json())
+            .then(json => resolve(json))
+            .catch(error => reject(error))
+    )
+
+getData('https://jsonplaceholder.typicode.com/todos')
+    .then(data => console.log(data))
+    .catch(error => console.log(error.message))
+```
+
+### Шаг 1
+
+```js
+const getData = async (url) => {
+    const res = await fetch(url) // добавляем await, так как мы ждем исполнения или отклонения промиса
+    const json = await res.json()
+    return json // возвращаем объект
+}
+
+getData('https://jsonplaceholder.typicode.com/todos')
+    .then(data => console.log(data))
+    .catch(error => console.log(error.message))
+```
+
+### Шаг 2
+
+Синтаксис с `await` доступен только в консоли браузера
+
+```js
+const getData = async (url) => {
+    const res = await fetch(url)
+    const json = await res.json()
+    return json
+}
+
+const url = 'https://jsonplaceholder.typicode.com/todos'
+const data = await getData(url)
+```
+
+Но здесь нет обработчика ошибок
+
+### Шаг 3
+
+Добавим блок `try ... catch`. Получим такой красивый код:
+
+```js
+const getData = async (url) => {
+    const res = await fetch(url)
+    const json = await res.json()
+    return json
+}
+
+const url = 'https://jsonplaceholder.typicode.com/todos'
+
+try {
+    const data = await getData(url)
+    console.log(data)
+} catch (error) {
+    console.log(error.message)
+}
+```
+
+# Главное в `async` / `await`
+
+1. `async` / `await` - это синтаксическая надстройка над промисами.
+2. `await` синтаксис вохможен только внутри `async` (асинхронных) функций.
+3. `async` функция всегда возвращает Promise.
+4. `async` функция ожидает результата инструкции `await` и не выполняет последующие инструкции.
