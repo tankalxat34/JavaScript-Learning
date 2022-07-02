@@ -1386,3 +1386,173 @@ console.log(oneRenamed) // 1
 3. Распологайте все `import` инструкции вверху файла;
 4. По возможности используйте `export default`;
 
+# Классы и прототипы
+
+Здесь будет изложено про синтаксис классов из ES6 (2015 год). Именно тогда они впервые появились в JavaSctipt.
+
+Классы позволяют создавать прототипы для объектов. На основании прототипов создаются экземпляры. Каждый экземпляр имеет свои собственные свойства и методы. 
+
+Экземпляры наследуют методы и свойства прототипов.
+
+Класс - это шаблон для создания экземпляров класса.
+
+## Пример класса
+
+Для названия класса используй метод `PascalNotation` "обзывания" класса.
+
+```js
+class Comment {
+    constructor(text) {
+        /* конструктор класса. Определяет сам класс. Аналог __init__ класса в Python */
+        this.text = text
+        this.votesQty = 0
+    }
+
+    upvote() {
+        this.votesQty += 1
+    }
+}
+
+/* создание экземпляра класса */
+const firstComment = new Comment('First comment')
+```
+
+### Отдельно про `this`
+
+Это специальная переменная, которая указывает на экземпляр класса.
+
+## Создание экземпляра класса
+
+```js
+const firstComment = new Comment('First comment')
+```
+
+## Цепочка прототипов
+
+Цепочка прототипов означает такую последовательность экземпляров, классов и объектов, в которой каждая сущность наследуюет свойства родительской сущности.
+
+`firstComment` → `Comment` → `Object`
+
+## Проверка принадлежности с помощью `instanseof`
+
+```js
+class Comment {
+    constructor(text) {
+        /* конструктор класса. Определяет сам класс. Аналог __init__ класса в Python */
+        this.text = text
+        this.votesQty = 0
+    }
+
+    upvote() {
+        this.votesQty += 1
+    }
+}
+
+/* создание экземпляра класса */
+const firstComment = new Comment('First comment')
+
+firstComment instanceof Comment // true
+firstComment instanceof Object  // true
+```
+
+## Вызов методов
+
+```js
+class Comment {
+    constructor(text) {
+        /* конструктор класса. Определяет сам класс. Аналог __init__ класса в Python */
+        this.text = text
+        this.votesQty = 0
+    }
+
+    upvote() {
+        this.votesQty += 1
+    }
+}
+
+/* создание экземпляра класса */
+const firstComment = new Comment('First comment')
+
+firstComment.upvote()
+console.log(firstComment.votesQty)  // 1
+firstComment.upvote()
+console.log(firstComment.votesQty)  // 2
+```
+
+## Проверка принадлежности свойств экземпляру объекта
+
+```js
+const firstComment = new Comment('First comment')
+
+firstComment.hasOwnProperty('text')             // true
+firstComment.hasOwnProperty('votesQty')         // true
+firstComment.hasOwnProperty('upvote')           // false
+firstComment.hasOwnProperty('hasOwnProperty')   // false
+```
+
+## Статические методы
+
+Такие методы создаются с помощью ключевого слова `static`.
+
+Статический метод доступен как свойство класса и не наследуется экземплярами класса
+
+```js
+class Comment {
+    constructor(text) {
+        /* конструктор класса. Определяет сам класс. Аналог __init__ класса в Python */
+        this.text = text
+        this.votesQty = 0
+    }
+
+    upvote() {
+        this.votesQty += 1
+    }
+
+    static mergeComments(first, second) {
+        return `${first} ${second}`
+    }
+}
+
+/* вызываем статический метод */
+Comment.mergeComments('First comment.', 'Second comment.')
+```
+
+## Расширение других классов
+
+Создаем новый класс и пишем ключевое слово `extends`, которым мы указываем на класс, который мы хотим расширить.
+
+```js
+class NumbersArray extends Array {
+    sum() {
+        return this.reduce((el, acc) => acc += el, 0)
+    }
+}
+
+const myArray = new NumbersArray(2, 5, 7)
+console.log(myArray)
+console.log(myArray.sum())
+```
+
+`acc` (от слова accomulator) - переменная, которая может меняться в зависимости от пробежки по массиву/
+
+Продробнее о нем почитать в интернете [или же здесь](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+
+### Цепочка прототипов
+
+`myArray` → `NumbersArray` → `Array` → `Object`
+
+## Прототип
+
+У каждого экземпляра класса есть скрытое свойство, которое называется `__proto__`. За счет него как раз и формируется цепочка прототипов
+
+Посмотрим на работу этого свойства
+
+```js
+Comment.prototype === firstComment.__proto__ // true
+```
+
+Выведется `true`, так как общее у класса и экземпляра класса - объект, в котором находятся методы, ранее определенные нами в классе.
+
+## Важное замечание
+
+Строки и числа ведут себя как объекты.
